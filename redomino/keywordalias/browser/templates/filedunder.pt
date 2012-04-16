@@ -1,0 +1,17 @@
+<span tal:define="tags context/Subject|nothing;
+                  keywordtranslator python:context.restrictedTraverse('@@keywordtranslator');
+                 "
+      i18n:domain="plone"
+      tal:condition="tags">
+    &mdash;
+    <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
+        <span tal:repeat="tag tags">
+            <a href=""
+               class="link-tag"
+               rel="tag"
+               tal:content="python:keywordtranslator.translate(tag)"
+               tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}">
+               Tag
+            </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
+        </span>
+</span>

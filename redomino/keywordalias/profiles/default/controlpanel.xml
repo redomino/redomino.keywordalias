@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<object
+    name="portal_controlpanel"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="redomino.keywordalias">
+
+    <configlet
+        title="Keyword alias"
+        action_id="redomino.keywordalias.keywordsettings"
+        appId="redomino.keywordalias"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@keywordalias"
+        icon_expr="string:${portal_url}/++resource++redomino.keywordalias.resources/icontool.png"
+        visible="True"
+        i18n:attributes="title">
+            <permission>Manage portal</permission>
+    </configlet>
+
+</object>

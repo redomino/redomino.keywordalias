@@ -1,0 +1,50 @@
+<div class="field" tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');
+                               keywordtranslator python:context.restrictedTraverse('@@keywordtranslator');"
+                   i18n:domain="plone"
+                   tal:condition="usedSubjects">
+
+    <label for="Subject" i18n:translate="label_tags">Tags</label>
+
+    <div class="formHelp" i18n:translate="help_search_tags">
+    Return items matching some or all of these tags.
+    Multiple words may be found by pressing <strong>Ctrl</strong>
+    (or <strong>Apple</strong> key on Mac) while clicking the
+    keywords.
+    </div>
+
+    <select name="Subject:list"
+            id="Subject"
+            size="7"
+            multiple="multiple"
+            tal:define="contentSubjects context/Subject;">
+        <option value="#"
+                tal:repeat="subject usedSubjects"
+                tal:content="python:keywordtranslator.translate(subject)"
+                tal:attributes="value subject"
+                i18n:domain="plone-metadata"
+                i18n:translate=""
+                >dummy</option>
+    </select>
+    <br />
+
+    <input type="radio"
+           name="Subject_usage:ignore_empty"
+           id="Subject_or"
+           value=""
+           class="noborder"
+           tal:attributes="checked python:(request.get('Subject_usage:ignore_empty', '') == '') and 1 or ''"/>
+        <label for="Subject_or" i18n:translate="description_subject_or">
+            Match any
+        </label>
+        <br />
+
+    <input type="radio"
+            name="Subject_usage:ignore_empty"
+            id="Subject_and"
+            value="operator:and"
+            class="noborder"
+            tal:attributes="checked python:(request.get('Subject_usage:ignore_empty') != '') and 1 or 0"/>
+    <label for="Subject_and" i18n:translate="description_subject_and">
+        Match all
+    </label>
+</div>

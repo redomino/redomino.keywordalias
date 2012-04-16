@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="redomino.keywordalias">
+
+  <include package="z3c.form" file="meta.zcml" />
+
+  <z3c:widgetTemplate
+        mode="display"
+        widget=".widgets.IKeywordLangKey"
+        layer="z3c.form.interfaces.IFormLayer"
+        template="templates/keywordlangkey_display.pt"
+        />
+
+
+</configure>
+

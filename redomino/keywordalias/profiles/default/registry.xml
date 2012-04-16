@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+<registry>
+    <records interface="redomino.keywordalias.interfaces.IKeywords" />
+</registry>
+-->
+<registry>
+    <record name="redomino.keywordalias.interfaces.IKeywords.keyword_storage">
+        <field type="plone.registry.field.Dict">
+          <title>Keywords storage</title>
+          <!--
+          <default>
+              <element key="exampleentry">
+                   <element>First example keyword alias</element>
+                   <element>Secondary example keyword alias</element>
+              </element>
+          </default>
+          -->
+
+          <key_type type="plone.registry.field.TextLine">
+            <title>Key</title>
+          </key_type>
+          <value_type type="plone.registry.field.List">
+              <title>Keywords</title>
+              <value_type type="plone.registry.field.TextLine">
+                  <title>Values</title>
+              </value_type>
+          </value_type>
+        </field>
+        <value purge="false">
+            <element key="pippo">
+                <element>1</element>
+                <element>2</element>
+            </element>
+        </value>
+    </record>
+</registry>
+

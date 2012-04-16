@@ -1,0 +1,9 @@
+.batch-navigation li {
+    display: inline !important;
+}
+
+.batch-navigation li a {
+    border: 0.1em solid #CCCCCC;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+}

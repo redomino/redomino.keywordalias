@@ -1,0 +1,76 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-03-19 11:54+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: Davide Moro <davide.moro@redomino.com>\n"
+"Language-Team: Redomino <info@redomino.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: redomino.keywordalias\n"
+
+#. Default: "Keyword alias"
+#: ./profiles/default/controlpanel.xml
+msgid "Keyword alias"
+msgstr ""
+
+#. Default: "Alias"
+#: ./interfaces.py:10
+msgid "alias_label"
+msgstr ""
+
+#. Default: "Aliases"
+#: ./interfaces.py:10
+msgid "aliases_label"
+msgstr ""
+
+#. Default: "Save"
+#: ./browser/managekeywords.py:59
+msgid "edit_apply_changes"
+msgstr ""
+
+#. Default: "Keyword"
+#: ./interfaces.py:9
+msgid "keyword_label"
+msgstr ""
+
+#. Default: "Edit keyword translations"
+#: ./browser/managekeywords.py:53
+msgid "keyword_management_edit_label"
+msgstr ""
+
+#. Default: "Manage keywords form"
+#: ./browser/managekeywords.py:65
+msgid "keyword_management_form"
+msgstr ""
+
+#. Default: "Manage keywords"
+#: ./browser/managekeywords.py:64
+msgid "keyword_management_label"
+msgstr ""
+
+#. Default: "Keyword"
+#: ./interfaces.py:14
+msgid "keywordkeytype_label"
+msgstr ""
+
+#. Default: "Keywords"
+#: ./interfaces.py:13
+msgid "keywords_label"
+msgstr ""
+
+#. Default: "Value"
+#: ./interfaces.py:15
+msgid "value_label"
+msgstr ""
+
+#. Default: "Values"
+#: ./interfaces.py:15
+msgid "values_label"
+msgstr ""
+
