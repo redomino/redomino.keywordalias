@@ -1,4 +1,4 @@
-# Copyright (c) 2010 Redomino srl (http://redomino.com)
+# Copyright (c) 2012 Redomino srl (http://redomino.com)
 # Authors: Davide Moro <davide.moro@redomino.com> and contributors
 #
 # This program is free software; you can redistribute it and/or modify
