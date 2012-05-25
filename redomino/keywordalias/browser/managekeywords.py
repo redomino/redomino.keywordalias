@@ -44,6 +44,7 @@ class KeywordAlias(object):
     @apply
     def keyword():
         def getter(self):
+            # Example: u'david\xe8'
             return self._keyword
         def setter(self, value):
             pass
@@ -52,6 +53,7 @@ class KeywordAlias(object):
     @apply
     def keywords():
         def getter(self):
+            # Example: [u'david\xe8']
             keyword = self.keyword
             keyword_settings = get_storage() 
             keyword_storage = keyword_settings.keyword_storage
@@ -64,7 +66,7 @@ class KeywordAlias(object):
         return property(getter, setter)
 
     def __repr__(self):
-        return "<KeywordAlias %s with keywords=%s>" % (self.keyword, str(self.keyword))
+        return "<KeywordAlias %s with keywords=%s>" % (self.keyword, str(self.keywords))
 
 
 class KeywordAliasEditForm(crud.EditForm):
@@ -179,14 +181,15 @@ class KeywordAliasForm(crud.CrudForm):
 
         for item in items:
             keyword = item[0]
-            if keyword in catalog_entries:
+            if keyword.encode('utf-8') in catalog_entries:
                 results.append(item)
             else:
                 splitted_keyword = self._keyword_split(keyword)
                 lang = splitted_keyword[1]
-                if lang and lang in languages and splitted_keyword[0] in catalog_entries:
+                if lang and lang in languages and splitted_keyword[0].encode('utf-8') in catalog_entries:
                     results.append(item)
-        return sorted([(str(item[0]), KeywordAlias(item[0], item[1])) for item in results], key=lambda x: x[0])
+        # Example: return [(u'david\xe8'.encode('utf-8'), KeywordAlias(u'david\xe8', [u'david\xe8']))]
+        return sorted([(item[0].encode('utf-8'), KeywordAlias(item[0], item[1])) for item in results], key=lambda x: x[0])
 
     def add(self, data):
         """ It is not possible to add new keywords, they are automatically added
@@ -195,8 +198,8 @@ class KeywordAliasForm(crud.CrudForm):
         keyword_settings = self._keyword_settings
         keyword_storage = keyword_settings.keyword_storage
 
-        key = unicode(data['keyword'])
-        value = [unicode(item) for item in data['keywords']]
+        key = unicode(data['keyword'], 'utf-8')
+        value = [unicode(item, 'utf-8') for item in data['keywords']]
         keyword_storage[key] = value
         keyword_settings.keyword_storage = keyword_storage
 
@@ -220,11 +223,11 @@ class KeywordAliasForm(crud.CrudForm):
         languages = self._portal_languages
 
         for item in catalog_entries:
-            if item not in storage_entries:
+            if item.decode('utf-8') not in storage_entries:
                 self.add(dict(keyword=item, keywords=[]))
             for lang in languages:
                 lang_item = "%s|%s" % (item, lang)
-                if lang_item not in storage_entries:
+                if lang_item.decode('utf-8') not in storage_entries:
                     self.add(dict(keyword=lang_item, keywords=[]))
 
     def update(self):
