@@ -21,6 +21,7 @@ from zope.component import getMultiAdapter
 from z3c.form import field
 from z3c.form.interfaces import DISPLAY_MODE
 
+from plone.memoize.view import memoize
 from plone.z3cform.crud import crud
 from plone.app.z3cform import layout
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
@@ -124,6 +125,7 @@ class KeywordAliasForm(crud.CrudForm):
     editform_factory = KeywordAliasEditForm
     batch_size = 25
 
+    @memoize
     def default_charset(self):
         context = self.getContent()
         return getMultiAdapter((context, self.request), name=u'plone').site_encoding()
