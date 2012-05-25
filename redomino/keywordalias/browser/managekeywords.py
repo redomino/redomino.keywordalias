@@ -124,6 +124,10 @@ class KeywordAliasForm(crud.CrudForm):
     editform_factory = KeywordAliasEditForm
     batch_size = 25
 
+    def default_charset(self):
+        context = self.getContent()
+        return getMultiAdapter((context, self.request), name=u'plone').site_encoding()
+
     @property
     def _keyword_settings(self):
         """ Return the keywor settings storage """
@@ -176,20 +180,21 @@ class KeywordAliasForm(crud.CrudForm):
         items = keyword_storage.items()
         catalog_entries = self._unique_keyword_values
         languages = self._portal_languages
+        charset = self.default_charset()
 
         results = []
 
         for item in items:
             keyword = item[0]
-            if keyword.encode('utf-8') in catalog_entries:
+            if keyword.encode(charset) in catalog_entries:
                 results.append(item)
             else:
                 splitted_keyword = self._keyword_split(keyword)
                 lang = splitted_keyword[1]
-                if lang and lang in languages and splitted_keyword[0].encode('utf-8') in catalog_entries:
+                if lang and lang in languages and splitted_keyword[0].encode(charset) in catalog_entries:
                     results.append(item)
         # Example: return [(u'david\xe8'.encode('utf-8'), KeywordAlias(u'david\xe8', [u'david\xe8']))]
-        return sorted([(item[0].encode('utf-8'), KeywordAlias(item[0], item[1])) for item in results], key=lambda x: x[0])
+        return sorted([(item[0].encode(charset), KeywordAlias(item[0], item[1])) for item in results], key=lambda x: x[0])
 
     def add(self, data):
         """ It is not possible to add new keywords, they are automatically added
@@ -197,9 +202,10 @@ class KeywordAliasForm(crud.CrudForm):
         """
         keyword_settings = self._keyword_settings
         keyword_storage = keyword_settings.keyword_storage
+        charset = self.default_charset()
 
-        key = unicode(data['keyword'], 'utf-8')
-        value = [unicode(item, 'utf-8') for item in data['keywords']]
+        key = unicode(data['keyword'], charset)
+        value = [unicode(item, charset) for item in data['keywords']]
         keyword_storage[key] = value
         keyword_settings.keyword_storage = keyword_storage
 
@@ -221,13 +227,14 @@ class KeywordAliasForm(crud.CrudForm):
         storage_entries = keyword_storage.keys()
         catalog_entries = self._unique_keyword_values
         languages = self._portal_languages
+        charset = self.default_charset()
 
         for item in catalog_entries:
-            if item.decode('utf-8') not in storage_entries:
+            if item.decode(charset) not in storage_entries:
                 self.add(dict(keyword=item, keywords=[]))
             for lang in languages:
                 lang_item = "%s|%s" % (item, lang)
-                if lang_item.decode('utf-8') not in storage_entries:
+                if lang_item.decode(charset) not in storage_entries:
                     self.add(dict(keyword=lang_item, keywords=[]))
 
     def update(self):
