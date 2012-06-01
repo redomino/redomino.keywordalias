@@ -69,10 +69,44 @@ class KeywordAlias(object):
     def __repr__(self):
         return "<KeywordAlias %s with keywords=%s>" % (self.keyword, str(self.keywords))
 
+class KeywordAliasEditSubForm(crud.EditSubForm):
+    pass
 
+    def updateWidgets(self):
+        super(KeywordAliasEditSubForm, self).updateWidgets()
+        name = self.widgets.items()[0][1].name
+        for widget in self.widgets.values():
+            name = widget.name
+            widget_id = widget.id
+            value = widget.value
+            widget.__dict__['name'] = name.decode('utf-8')
+            widget.__dict__['id'] = widget_id.decode('utf-8')
+            if isinstance(value, tuple):
+                results = []
+                for item in value:
+                    results.append(item.decode('utf-8'))
+                results = tuple(results)
+                widget.__dict__['value'] = results #value.decode('utf-8')
+
+#    def _select_field(self):
+#        select_field = field.Field(
+#               schema.Bool(__name__='select',
+#               required=False,
+#               title=_(u'select')))
+#        from z3c.form.interfaces import INPUT_MODE
+#        from plone.z3cform.widget import singlecheckboxwidget_factory
+#        select_field.widgetFactory[INPUT_MODE] = singlecheckboxwidget_factory
+#        return select_field
+
+ 
 class KeywordAliasEditForm(crud.EditForm):
     """ Crud edit form """
     label = _(u'keyword_management_edit_label', default=u'Edit keyword translations')
+
+    #exposes the edit sub form for your own derivatives
+    editsubform_factory = KeywordAliasEditSubForm
+
+
 
     def updateActions(self):
         # We don't need a delete button

@@ -12,6 +12,11 @@
         template="templates/keywordlangkey_display.pt"
         />
 
-
+  <z3c:widgetTemplate
+        mode="input"
+        widget="z3c.form.interfaces.ICheckBoxWidget"
+        layer=".interfaces.IRedominoKeywordAliasLayer"
+        template="templates/checkbox_input.pt"
+        />
 </configure>
 
