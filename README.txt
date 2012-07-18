@@ -43,6 +43,15 @@ How to customize the 'search_form' view (where result may be an object or a cata
 
     <tal:replace replace="structure result/@@filedunder" />
 
+Similar products
+----------------
+
+See http://pypi.python.org/pypi/archetypes.linguakeywordwidget written by JeanMichel FRANCOIS aka toutpt <toutpt@gmail.com>.
+
+This package achieve the same goal but in a different way. With keyword alias
+your keywords are translated in backoffice. With linguakeywords you have
+just different keywords.
+
 
 Authors
 -------
