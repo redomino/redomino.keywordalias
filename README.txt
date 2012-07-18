@@ -13,7 +13,7 @@ It provides:
 * a couple of views that let you personalize your 'search' and 'search_form' views.
   Note well: you have to customize your search and search_form manually! These two templates may depend on the Plone version you are using
 
-Tested on Plone 4.1.5.
+Tested on Plone 4.1.5 and Plone 4.2.
 
 How it works?
 -------------
