@@ -4,5 +4,8 @@ Changelog
 0.1dev (unreleased)
 -------------------
 
+- Closes ticket #4
+  [giacomos]
+
 - Initial release
   [davidemoro]

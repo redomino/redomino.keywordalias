@@ -13,6 +13,8 @@ It provides:
 * a couple of views that let you personalize your 'search' and 'search_form' views.
   Note well: you have to customize your search and search_form manually! These two templates may depend on the Plone version you are using
 
+Tested on Plone 4.1.5.
+
 How it works?
 -------------
 This product provides a customized keywords viewlet that shows keyword aliases instead of standard keywords depending on a configuration panel.

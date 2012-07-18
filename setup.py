@@ -44,6 +44,7 @@ setup(name='redomino.keywordalias',
           'setuptools',
           # -*- Extra requirements: -*-
           'plone.browserlayer',
+          'plone.app.registry',
       ],
       entry_points="""
       # -*- Entry points: -*-
