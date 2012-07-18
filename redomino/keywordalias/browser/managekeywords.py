@@ -70,7 +70,6 @@ class KeywordAlias(object):
         return "<KeywordAlias %s with keywords=%s>" % (self.keyword, str(self.keywords))
 
 class KeywordAliasEditSubForm(crud.EditSubForm):
-    pass
 
     def updateWidgets(self):
         super(KeywordAliasEditSubForm, self).updateWidgets()
